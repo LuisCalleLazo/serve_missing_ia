@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package model;
+
+service ModelService {
+  rpc AddModel(AddModelRequest) returns (AddModelResponse);
+  rpc RemoveModel(RemoveModelRequest) returns (RemoveModelResponse);
+  rpc AnalyzeImage(AnalyzeImageRequest) returns (AnalyzeImageResponse);
+  rpc ListModels(Empty) returns (ListModelsResponse);
+}
+
+message AddModelRequest {
+  int32 person_id = 1;
+  string model_path = 2;
+}
+
+message AddModelResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RemoveModelRequest {
+  int32 person_id = 1;
+}
+
+message RemoveModelResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message AnalyzeImageRequest {
+  int32 person_id = 1;
+  bytes image_data = 2;
+}
+
+message AnalyzeImageResponse {
+  bool is_person_detected = 1;
+  string message = 2;
+}
+
+message ListModelsResponse {
+  repeated ModelInfo models = 1;
+}
+
+message ModelInfo {
+  int32 person_id = 1;
+  string model_path = 2;
+}
+
+message Empty {}
