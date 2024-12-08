@@ -2,7 +2,7 @@
 from keras._tf_keras.keras.models import Sequential
 from keras._tf_keras.keras.layers import Dense, Input
 from keras._tf_keras.keras.optimizers import Adam
-from face_embeddings import get_training_XY
+from .face_embeddings import get_training_XY
 import os
 import sys
 import io
