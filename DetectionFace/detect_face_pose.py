@@ -1,12 +1,11 @@
-import sys
+
 import cv2
 import dlib
 import os
 
-def detect_face(image_path):
+def detect_face_pose(image_path):
 
   try:
-
     # Archivo .Dat de face_landmarks 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     dat_path = os.path.join(current_dir, "shape_predictor_68_face_landmarks.dat")
@@ -59,8 +58,3 @@ def detect_face(image_path):
       print(f"Error al cargar el predictor o procesar la imagen: {dlib_error}")
   except Exception as e:
       print(f"Ocurrió un error inesperado: {e}")
-
-
-if __name__ == "__main__":
-  image_path = sys.argv[1]
-  print(detect_face(image_path))
