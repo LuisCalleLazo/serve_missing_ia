@@ -40,10 +40,3 @@ def generate_model(name_model, type_save, training_model):
     print("Sucedio un error")
     print(e)
     return False
-
-
-if __name__ == "__main__":
-  name_model = sys.argv[1]
-  type_save = sys.argv[2]
-  folder_path = sys.argv[3]
-  print(generate_model(name_model, type_save, folder_path))

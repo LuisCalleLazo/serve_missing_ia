@@ -3,9 +3,9 @@
 import grpc
 import warnings
 
-from . import service_pb2 as service__pb2
+from . import face_service_pb2 as face__service__pb2
 
-GRPC_GENERATED_VERSION = '1.68.0'
+GRPC_GENERATED_VERSION = '1.68.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in service_pb2_grpc.py depends on'
+        + f' but the generated code in face_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,13 +36,8 @@ class FaceServiceStub(object):
         """
         self.DetectFacePose = channel.unary_unary(
                 '/FaceService/DetectFacePose',
-                request_serializer=service__pb2.DetectFaceRequest.SerializeToString,
-                response_deserializer=service__pb2.DetectFaceResponse.FromString,
-                _registered_method=True)
-        self.GenerateModel = channel.unary_unary(
-                '/FaceService/GenerateModel',
-                request_serializer=service__pb2.GenerateModelRequest.SerializeToString,
-                response_deserializer=service__pb2.GenerateModelResponse.FromString,
+                request_serializer=face__service__pb2.DetectFaceRequest.SerializeToString,
+                response_deserializer=face__service__pb2.DetectFaceResponse.FromString,
                 _registered_method=True)
 
 
@@ -55,24 +50,13 @@ class FaceServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GenerateModel(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_FaceServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'DetectFacePose': grpc.unary_unary_rpc_method_handler(
                     servicer.DetectFacePose,
-                    request_deserializer=service__pb2.DetectFaceRequest.FromString,
-                    response_serializer=service__pb2.DetectFaceResponse.SerializeToString,
-            ),
-            'GenerateModel': grpc.unary_unary_rpc_method_handler(
-                    servicer.GenerateModel,
-                    request_deserializer=service__pb2.GenerateModelRequest.FromString,
-                    response_serializer=service__pb2.GenerateModelResponse.SerializeToString,
+                    request_deserializer=face__service__pb2.DetectFaceRequest.FromString,
+                    response_serializer=face__service__pb2.DetectFaceResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -100,35 +84,8 @@ class FaceService(object):
             request,
             target,
             '/FaceService/DetectFacePose',
-            service__pb2.DetectFaceRequest.SerializeToString,
-            service__pb2.DetectFaceResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GenerateModel(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/FaceService/GenerateModel',
-            service__pb2.GenerateModelRequest.SerializeToString,
-            service__pb2.GenerateModelResponse.FromString,
+            face__service__pb2.DetectFaceRequest.SerializeToString,
+            face__service__pb2.DetectFaceResponse.FromString,
             options,
             channel_credentials,
             insecure,
